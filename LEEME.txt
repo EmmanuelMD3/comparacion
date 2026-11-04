@@ -1,0 +1,58 @@
+COMPARACIÓN DE ALGORITMO GENÉTICO Y ENJAMBRE DE PARTÍCULAS
+Minimización de la función Rastrigin para la clase de Cómputo Evolutivo
+
+1. REQUISITOS
+- Python 3.10 o superior.
+- Instalar dos librerías desde CMD / terminal:
+    python -m pip install numpy matplotlib
+- Tkinter viene incluido con la instalación habitual de Python para Windows.
+
+2. ABRIR EL PROGRAMA CON INTERFAZ
+En Visual Studio Code abre la carpeta que contiene rastrigin_comparador.py,
+y ejecuta en una terminal:
+    python rastrigin_comparador.py
+
+3. CÓMO HACER LA COMPARACIÓN
+- Usa dimensiones=2, población=50, iteraciones=200, corridas=10, semilla=42.
+- Pulsa «Ejecutar comparación».
+- Observa la gráfica de convergencia: cuanto más próxima a cero, mejor.
+- Observa la gráfica de cajas: compara la dispersión de resultados finales.
+- Observa el mapa de contorno 2D: marca los mínimos encontrados por cada algoritmo.
+- Revisa la tabla de resultados: mínimo, promedio, mediana, tiempo, tasa de éxito.
+- Exporta las gráficas PNG y los datos CSV para documentar la actividad.
+
+4. EXPERIMENTOS SUGERIDOS
+Prueba A: dimensiones=2,  población=50, iteraciones=200, corridas=10.
+Prueba B: dimensiones=5,  población=50, iteraciones=200, corridas=10.
+Prueba C: dimensiones=10, población=50, iteraciones=200, corridas=10.
+Mantén igual el resto de los parámetros para comparar la dificultad.
+El mapa de contorno solo aparece con 2 dimensiones.
+
+5. QUÉ SIGNIFICA CADA TÉRMINO
+- Fitness: valor de f(x), más pequeño es mejor.
+- Mejor resultado: menor valor obtenido en todas las corridas.
+- Promedio: calidad general del algoritmo en varias corridas.
+- Tiempo: duración media por corrida en milisegundos.
+- Tasa de éxito: porcentaje de corridas donde f(x) <= 0.01.
+- Gráfica de convergencia: cómo mejora el fitness a lo largo de las iteraciones.
+- Evaluaciones: veces que se calcula la función objetivo; se usa el mismo
+  número para AG y PSO, asegurando un presupuesto comparable.
+
+6. ALGORITMOS
+AG: población real, selección torneo (3), cruce BLX, mutación gaussiana,
+    elitismo del 5%, conserva la mejor solución histórica.
+PSO: mejor personal y global, pesos de inercia decrecientes (0.9 a 0.4),
+     factores cognitivo/social = 1.7, velocidad máxima = 20% del dominio.
+
+7. USAR SIN INTERFAZ (OPCIONAL)
+    python rastrigin_comparador.py --cli --dimensiones 2 --iteraciones 200 --corridas 10
+Para exportar CSV:
+    python rastrigin_comparador.py --cli --salida resultados.csv
+
+8. FUNCIÓN DE RASTRIGIN
+f(x) = 10n + sum_i [x_i^2 - 10 cos(2*pi*x_i)]
+A=10; x_i en [-5.12,5.12]; mínimo global f(0,...,0)=0.
+
+IMPORTANTE: Al ser algoritmos estocásticos, los resultados cambian al
+modificar la semilla. Una sola corrida no basta para concluir qué método
+es mejor en general.
